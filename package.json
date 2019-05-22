@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "nodemon -r esm"
+    "start": "nodemon -r esm",
+    "client": "npm start --prefix client",
+    "app": "concurrently \"npm run start\" \"npm run client\""
   },
   "keywords": [],
   "author": "",
@@ -13,6 +15,7 @@
   "dependencies": {
     "apollo-server-express": "^2.5.0",
     "bcryptjs": "^2.4.3",
+    "concurrently": "^4.1.0",
     "connect-mongo": "^2.0.3",
     "esm": "^3.2.25",
     "express": "^4.17.0",
@@ -22,7 +25,6 @@
     "mongoose": "^5.5.10"
   },
   "devDependencies": {
-    "jest": "^24.8.0",
     "nodemon": "^1.19.0"
   }
 }
