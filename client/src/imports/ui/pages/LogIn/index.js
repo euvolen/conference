@@ -1,16 +1,11 @@
 
 import React, { Component } from 'react'
 import {Mutation} from 'react-apollo'
-import gql from 'graphql-tag';
-
-const SIGN_IN = gql`
-mutation SignInMutation($email:String!,$password:String! ){
-  signIn(email:$email, password:$password){
-        id
-    }
-}
-`
-
+import {SIGN_IN} from '../../../apollo/Mutations/Auth'
+import { connect } from 'react-redux';
+import { authenticateUser } from '../../../redux/actions/user';
+import { getErrors } from '../../../redux/actions/error';
+import PropTypes from 'prop-types'
 
 class Login extends Component {
   state = {
@@ -21,10 +16,10 @@ class Login extends Component {
   }
 
   render() {
-    const { login, email, password } = this.state
+    const {email, password } = this.state
     return (
         <Mutation mutation={SIGN_IN}>
-            {(signin, {data})=>(
+            {(signIn, {data})=>(
                 <div>
      
         <div className="flex flex-column">
@@ -47,20 +42,15 @@ class Login extends Component {
         <div className="flex mt3">
           <div className="btn btn-primary" onClick={(e) =>{
               e.preventDefault()
-              signin({variables: {email, password}})
-              console.log(data)
+              signIn({variables: {email, password}}).then(res=>{
+                const user = res.data.signIn 
+                this.props.authenticateUser(user, this.props.history)
+              }).catch(err => this.props.getErrors(err.message))
               this.setState({email:'', password:''})
           } }>
-            {login ? 'login' : 'create account'}
+             Login 
           </div>
-          <div
-            className="btn btn-secondary"
-            onClick={() => this.setState({ login: !login })}
-          >
-            {login
-              ? 'need to create an account?'
-              : 'already have an account?'}
-          </div>
+
         </div>
       </div>
             )}
@@ -70,5 +60,15 @@ class Login extends Component {
   }
 
 }
+Login.propTypes = {
+  authenticateUser: PropTypes.func.isRequired,
+  getErrors: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
 
-export default Login
+const mapStateToProps = state => ({
+  user: state.user,
+  errors: state.errors
+});
+export default connect(mapStateToProps, { authenticateUser, getErrors })(Login);

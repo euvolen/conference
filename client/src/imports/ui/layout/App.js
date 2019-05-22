@@ -1,14 +1,19 @@
-import React from 'react';
+import React from 'react'
 import {BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { ExchangeRates } from '../components/ExchangeRates';
-import Home from '../pages/Home';
-import About from '../pages/About';
-import SignUp from '../pages/SingUp';
-import LogIn from '../pages/LogIn';
-import Navbar from '../components/Navbar';
+import { Provider } from 'react-redux'
+import { ExchangeRates } from '../components/ExchangeRates'
+import Home from '../pages/Home'
+import About from '../pages/About'
+import SignUp from '../pages/SingUp'
+import LogIn from '../pages/LogIn'
+import Navbar from '../components/Navbar'
+import store from '../../redux/store'
 import './App.css'
+
+
 function App() {
   return (
+    <Provider store={store}>
     <Router>
       <Navbar/>
     <Switch>
@@ -21,7 +26,7 @@ function App() {
       </div>
     </Switch>
     </Router>
-   
+   </Provider>
  
   );
 }
