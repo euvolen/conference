@@ -8,7 +8,7 @@ import {
 import mongoose from 'mongoose'
 
 export const connect = () => {
-    return new Promise((resolve, reject) => {mongoose.connect(`mongodb://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`, {useNewUrlParser:true})
+    return new Promise((resolve, reject) => {mongoose.connect(`mongodb://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`, {useNewUrlParser:true, useFindAndModify:false})
     .then((res, err) => {
         if(err) return reject(err)
         console.log(`DB ${DB_NAME} connected`)

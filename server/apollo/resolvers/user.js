@@ -1,4 +1,6 @@
 import mongoose from "mongoose"
+import Joi from 'joi'
+import { signIn, signUp } from "../../validations"
 import { User, Abstract } from "../../models"
 import { UserInputError } from "apollo-server-express";
 import {signOut, attemtSignIn} from '../../auth'
@@ -32,7 +34,7 @@ export default {
     Mutation:{
         signUp: async(root, args, {req}, info)=>{
              //TODO: validation
-             
+             await Joi.validate(args, signUp, {abortEarly:false})
              const user =  await User.create(args)
              req.session.userId = user.id
              req.session.role = user.role
@@ -41,7 +43,7 @@ export default {
         },
         signIn: async (root, {email, password}, {req}, info)=>{
              //TODO: validation
-
+             await Joi.validate({email, password}, signIn, {abortEarly:false})
             const user = await attemtSignIn(email,password)
             req.session.userId= user.id
             req.session.role = user.role
