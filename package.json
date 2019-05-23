@@ -1,7 +1,7 @@
 {
   "name": "conference",
   "version": "1.0.0",
-  "description": "",
+  "description": "Template for conferences' websites",
   "main": "index.js",
   "scripts": {
     "test": "jest",
@@ -10,7 +10,7 @@
     "app": "concurrently \"npm run start\" \"npm run client\""
   },
   "keywords": [],
-  "author": "",
+  "author": "Eugene Volen",
   "license": "ISC",
   "dependencies": {
     "apollo-server-express": "^2.5.0",
