@@ -4,7 +4,7 @@ import {SESS_NAME} from './configs/keys'
 
 const signedin = req => req.session.userId
 const admin = req => req.session.role === 'admin'
-
+const reviewer = req => req.session.role === 'reviewer'
 export const ensureSignedIn =(req)=>{
     if( ! signedin(req))
      throw new AuthenticationError('You must be signed in.')
@@ -14,10 +14,14 @@ export const ensureSignedOut =(req)=>{
       throw new AuthenticationError('You are already signed in.')
 }
 export const isAdmin = (req)=>{
-    if(! (signedin(req) && admin(req)))
+    if(!admin(req))
      throw new ForbiddenError('Forbidden.')
    
 }
+export const isReviewer = (req)=>{
+        if(!reviewer(req)||!admin(req))
+         throw new ForbiddenError('Forbidden.')      
+    }
 export const attemtSignIn = async (email,password) =>{
     
     const message = 'Email or password is incorrect. Please try again'

@@ -7,6 +7,8 @@ const abstractSchema = new Schema({
     },
     title: String,
     body: String,
+    keywords:[String],
+    status:String,
     reviewer:{
         type:Schema.Types.ObjectId,
         ref:'users'

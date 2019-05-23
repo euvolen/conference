@@ -4,6 +4,7 @@ const root = gql`
     directive @public on FIELD_DEFINITION
     directive @private on FIELD_DEFINITION
     directive @authorized on FIELD_DEFINITION
+    directive @review on FIELD_DEFINITION
     type Query{
         _:String
     }

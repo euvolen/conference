@@ -20,7 +20,14 @@ export default {
                 return abstract
             }
            
-        }
+        },
+        verifyAbstract: async (root, args, {req,res}, info)=>{
+            const {id} = args 
+            const abstract = await Abstract.findOneAndUpdate({id}, {isVerified:true}) 
+            return abstract
+           
+        },
+
     },
    Abstract:{
         participant: async (root, args, {req,res}, info)=>{

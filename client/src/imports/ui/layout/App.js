@@ -9,8 +9,8 @@ import LogIn from '../pages/LogIn'
 import Navbar from '../components/Navbar'
 import store from '../../redux/store'
 import {SET_CURRENT_USER} from '../../redux/types'
-import {authenticateUser} from '../../redux/actions/user'
-import {CURRENT} from '../../apollo/Queries/user'
+import {authenticateUser} from '../../redux/actions'
+import {CURRENT} from '../../apollo/Queries'
 import {Query} from 'react-apollo'
 import './App.css'
 
@@ -21,7 +21,9 @@ function App() {
       <Query query={CURRENT}>
         {({loading, error, data})=>{
           if(loading) return <div>Loading...</div>
-          if(error) store.dispatch({type:SET_CURRENT_USER, payload:{}})
+          if(error) {
+            store.dispatch({type:SET_CURRENT_USER, payload:{}})
+          }
           else{
             store.dispatch(authenticateUser(data))
           }

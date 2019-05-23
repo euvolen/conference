@@ -11,6 +11,8 @@ const userSchema = new Schema({
 
     },
     name: String,
+    status: String,
+    affilation:String,
     password: String,
     abstracts: [
         {

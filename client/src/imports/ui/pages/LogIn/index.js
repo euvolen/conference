@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react'
 import {Mutation} from 'react-apollo'
-import {SIGN_IN} from '../../../apollo/Mutations/Auth'
+import {SIGN_IN} from '../../../apollo/Mutations'
 import { connect } from 'react-redux';
 import { getErrors } from '../../../redux/actions/error';
 import PropTypes from 'prop-types'

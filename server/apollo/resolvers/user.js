@@ -43,7 +43,7 @@ export default {
         },
         signIn: async (root, {email, password}, {req}, info)=>{
              //TODO: validation
-             await Joi.validate({email, password}, signIn, {abortEarly:false})
+            // await Joi.validate({email, password}, signIn, {abortEarly:false})
             const user = await attemtSignIn(email,password)
             req.session.userId= user.id
             req.session.role = user.role

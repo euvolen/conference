@@ -13,6 +13,7 @@ db.connect().then(()=>{
 
   app.disable('x-powered-by')
   app.use(session)
+  
   const server = new ApolloServer({
     typeDefs,
     resolvers,
