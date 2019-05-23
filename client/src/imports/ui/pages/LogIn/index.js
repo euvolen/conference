@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import {Mutation} from 'react-apollo'
 import {SIGN_IN} from '../../../apollo/Mutations'
 import { connect } from 'react-redux';
-import { getErrors } from '../../../redux/actions/error';
+import { getErrors,authenticateUser } from '../../../redux/actions';
 import PropTypes from 'prop-types'
 
 class Login extends Component {
@@ -39,8 +39,9 @@ class Login extends Component {
         <div className="flex mt3">
           <div className="btn btn-primary" onClick={(e) =>{
               e.preventDefault()
-              signIn({variables: {email, password}}).then(res=>{}).catch(err => this.props.getErrors(err.message))
-              this.setState({email:'', password:''})
+              signIn({variables: {email, password}})
+              .then(res=>{this.props.authenticateUser(res.data, this.props.history)})
+              .catch(err => this.props.getErrors(err.message))
           } }>
              Login 
           </div>
@@ -55,6 +56,7 @@ class Login extends Component {
 
 }
 Login.propTypes = {
+  authenticateUser: PropTypes.func.isRequired,
   getErrors: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
@@ -64,4 +66,4 @@ const mapStateToProps = state => ({
   user: state.user,
   errors: state.errors
 });
-export default connect(mapStateToProps, { getErrors })(Login);
+export default connect(mapStateToProps, { getErrors, authenticateUser })(Login);

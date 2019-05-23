@@ -1,7 +1,6 @@
 import React from 'react'
 import {BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import { ExchangeRates } from '../components/ExchangeRates'
 import Home from '../pages/Home'
 import About from '../pages/About'
 import SignUp from '../pages/SingUp'
@@ -13,6 +12,12 @@ import {authenticateUser} from '../../redux/actions'
 import {CURRENT} from '../../apollo/Queries'
 import {Query} from 'react-apollo'
 import './App.css'
+import Catalog from '../pages/Catalog'
+import PrivateRoute from '../components/PrivateRoute';
+import Account from '../pages/Account';
+import Settings from '../pages/Settings';
+import Abstract from '../pages/Abstract';
+import PublicRoute from '../components/PublicRoute';
 
 
 function App() {
@@ -35,9 +40,13 @@ function App() {
             <div className="container content">
             <Route exact path="/" component={Home}/>
             <Route exact path="/about" component={About}/>
-            <Route exact path="/signup" component={SignUp}/>
-            <Route exact path="/login" component={LogIn}/>
-            <Route exact path="/rates" component={ExchangeRates}/>
+            <Route exact path="/catalog" component={Catalog}/>
+            <PrivateRoute path="/user" component={Account}/>
+            <PrivateRoute path="/user/settings" component={Settings}/>
+            <PrivateRoute path="/user/abstract" component={Abstract}/>
+            <PublicRoute exact path="/signup" component={SignUp}/>
+            <PublicRoute exact path="/login" component={LogIn}/>
+     
             </div>
           </Switch>
           </Router>
