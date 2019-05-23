@@ -5,6 +5,14 @@ import { User, Abstract } from "../../models"
 import { UserInputError } from "apollo-server-express";
 import {signOut, attemtSignIn} from '../../auth'
 
+/* 
+ * Queries:
+ * current, users, user, reviewer, participant
+ * 
+ * Methods:
+ * signin, signup, signout
+ * 
+ */
 export default {
     Query:{
         current: (root, args, {req}, info)=>{

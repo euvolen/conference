@@ -1,6 +1,6 @@
 import { GET_ERRORS} from '../types';
 
-// Register User
+// Get all errors
 export const getErrors = (error) => dispatch => {
         dispatch({
           type: GET_ERRORS,

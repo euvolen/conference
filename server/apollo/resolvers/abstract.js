@@ -1,6 +1,12 @@
 import Joi from 'joi'
 import {Abstract, User} from '../../models'
 import {addAbstract} from '../../validations/'
+
+/* 
+ * Methods:
+ * postAbstract, verifyAbstract
+ * 
+ */
 export default {
     Mutation:{
         postAbstract: async (root, args, {req,res}, info)=>{

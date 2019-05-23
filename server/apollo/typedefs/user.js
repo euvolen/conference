@@ -5,7 +5,7 @@ export default gql`
         current: User @private
         user(id:ID!):User @private @authorized
         users:[User!]! @private @authorized
-        reviewer(id:ID!): Reviewer! @private 
+        reviewer(id:ID!): Reviewer! @private @review
         participant(id:ID!): Participant! @private 
     }
     extend type Mutation{

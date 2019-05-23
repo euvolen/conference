@@ -47,7 +47,7 @@ userSchema.methods.matchesPassword = function (password) {
     return bcrypt.compare(password, this.password)
 }
 
-
+//Uses hook 'save' and hashes password string authomatically  
 userSchema.pre('save', async function () {
     if (this.isModified('password')) {
         this.password = await bcrypt.hash(this.password, 10)

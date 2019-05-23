@@ -12,14 +12,17 @@ import {
     SESS_SECRET
 } from '../configs/keys'
 
+
 const MongoStore = connectMongo(session)
 
+//Creates store in same db
 const store = new MongoStore({
     url:`mongodb://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`
  })
 
+ //Session configs
  const newSession = session({
-    store: store,
+    store,
     name: SESS_NAME,
     secret:SESS_SECRET,
     resave:true,

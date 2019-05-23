@@ -1,5 +1,7 @@
 import gql from 'graphql-tag';
 
+// @private
+// return User
 export const CURRENT = gql`
 query CurrentUserQuery{
   current{
@@ -7,6 +9,8 @@ query CurrentUserQuery{
     }
 }
 `
+// @authorized  @private
+// return User
 export const USER = gql`
 query UserQuery($id:String!){
   user(id:$id){
@@ -17,6 +21,8 @@ query UserQuery($id:String!){
     }
 }
 `
+// @authorized  @private
+// return [User]
 export const USERS = gql`
 query UsersQuery{
   users{
@@ -27,7 +33,8 @@ query UsersQuery{
     }
 }
 `
-
+// @review  @private
+// return Reviewer
 export const REVIEWER = gql`
 query ReviewerQuery($id:String!){
   reviewer(id:$id){
@@ -42,6 +49,8 @@ query ReviewerQuery($id:String!){
     }
 }
 `
+//  @private
+// return Participant
 export const PARTICIPANT = gql`
 query ParticipantQuery($id:String!){
   participant(id:$id){

@@ -2,9 +2,7 @@ import { AuthenticationError , ForbiddenError} from "apollo-server-express";
 import {User} from './models'
 import {SESS_NAME} from './configs/keys'
 
-const signedin = req => req.session.userId
-const admin = req => req.session.role === 'admin'
-const reviewer = req => req.session.role === 'reviewer'
+
 export const ensureSignedIn =(req)=>{
     if( ! signedin(req))
      throw new AuthenticationError('You must be signed in.')
@@ -22,6 +20,7 @@ export const isReviewer = (req)=>{
         if(!reviewer(req)||!admin(req))
          throw new ForbiddenError('Forbidden.')      
     }
+
 export const attemtSignIn = async (email,password) =>{
     
     const message = 'Email or password is incorrect. Please try again'
@@ -46,3 +45,10 @@ export const signOut = (req, res)=> new Promise((resolve, reject)=>{
            resolve(true)
    })  
 })
+
+
+
+//util methods
+const signedin = req => req.session.userId
+const admin = req => req.session.role === 'admin'
+const reviewer = req => req.session.role === 'reviewer'

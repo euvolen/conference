@@ -11,9 +11,13 @@ db.connect().then(()=>{
 
   const app = express()
 
+
   app.disable('x-powered-by')
+  
+  //Sessions
   app.use(session)
   
+  //Apollo-server-express
   const server = new ApolloServer({
     typeDefs,
     resolvers,
@@ -25,8 +29,9 @@ db.connect().then(()=>{
     },
     context: ({req, res})=>({req,res})
 })
-   
+//add express as a middleware   
 server.applyMiddleware({ app , cors:false})
+
 app.listen({ port: APP_PORT }, () => {
     console.log(`Server ready at http://localhost:${APP_PORT}${server.graphqlPath}`)
 })

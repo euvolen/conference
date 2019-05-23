@@ -7,6 +7,8 @@ import {
 } from '../configs/keys'
 import mongoose from 'mongoose'
 
+
+// Connects db
 export const connect = () => {
     return new Promise((resolve, reject) => {mongoose.connect(`mongodb://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`, {useNewUrlParser:true, useFindAndModify:false})
     .then((res, err) => {
@@ -16,6 +18,7 @@ export const connect = () => {
     })
 })
 }
+// Disconnects db
 export const close = () => {
     return new Promise((resolve, reject) => {mongoose.disconnect()
     .then((res, err) => {
