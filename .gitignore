@@ -2,4 +2,4 @@
 /client/node_modules
 /server/configs/keys.js
 package-lock.json
-/design/conference.bsdesign
+**/design/
