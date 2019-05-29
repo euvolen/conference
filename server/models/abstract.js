@@ -14,8 +14,7 @@ const abstractSchema = new Schema({
         ref:'users'
     },
     isVerified: {
-        type: Boolean,
-        default: false
+        type: Boolean
     }
 
 }, {

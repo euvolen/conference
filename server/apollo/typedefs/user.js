@@ -36,6 +36,7 @@ export default gql`
         affilation:String!
         status:String!
         name:String!
+        isVerified:Boolean
         createdAt: String!
         updatedAt:String!
     }

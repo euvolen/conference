@@ -21,7 +21,7 @@ export default gql`
         id: ID!
         title:String!
         body:String!
-        isVerified:Boolean!
+        isVerified:Boolean
         createdAt: String!
         updatedAt:String!
     }
